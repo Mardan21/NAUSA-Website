@@ -1,8 +1,38 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-nausa-blue: #2E294E;
+  --color-nausa-green: #22c55e;
+  --color-nausa-gold: #fbbf24;
+  --color-nausa-lightblue: #0099FF;
+  --color-nausa-sage: #A59F78;
+  --color-nausa-vanilla: #F6F5AE;
+  
+  --animate-scroll-left: scroll-left 20s linear infinite;
+  --animate-bounce-slow: bounce-slow 3s ease-in-out infinite;
+}
+
+@keyframes scroll-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Utility classes */
+@utility animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+@utility animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+@utility text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 @theme inline {
@@ -23,4 +53,76 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 
+  Improved wave animation for smoother, more performant scrolling and fluid motion.
+  - Uses will-change for GPU acceleration.
+  - Reduces repaints by minimizing layout-affecting properties.
+  - Eases animation for more natural movement.
+  - Keeps opacity and top for layering effect.
+*/
+
+.waves-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.waves {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  margin-bottom: -7px;
+  min-height: 100px;
+  max-height: 150px;
+}
+
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+}
+
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+  100% { 
+    transform: translate3d(85px, 0, 0);
+  }
+}
+
+/* Shrinking for mobile */
+@media (max-width: 768px) {
+  .waves {
+    height: 60px;
+    min-height: 60px;
+  }
+  
+  .waves-container {
+    height: 60px;
+  }
 }
