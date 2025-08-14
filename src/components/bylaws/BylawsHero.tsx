@@ -5,7 +5,7 @@ export default function BylawsHero() {
     <section className="relative h-96 overflow-hidden pt-20">
       <div className="absolute inset-0">
         <Image
-          src="/images/gallery/2019/img11.jpg"
+          src="/images/gallery/img11.jpg"
           alt="Bylaws hero"
           fill
           className="object-cover"

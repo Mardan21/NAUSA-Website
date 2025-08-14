@@ -6,7 +6,7 @@ export default function MissionSection() {
     <section className="relative py-20 overflow-hidden">
       <div className="absolute inset-0">
         <Image
-          src="/images/tournament/_DSC1683.jpg"
+          src="/images/gallery/img85.jpg"
           alt="Team celebration"
           fill
           className="object-cover"

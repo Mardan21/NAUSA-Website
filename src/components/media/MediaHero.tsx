@@ -5,7 +5,7 @@ export default function MediaHero() {
     <section className="relative h-96 overflow-hidden pt-20">
       <div className="absolute inset-0">
         <Image
-          src="/images/gallery/2017/img7.jpeg"
+          src="/images/gallery/img4.jpg"
           alt="Media gallery hero"
           fill
           className="object-cover"

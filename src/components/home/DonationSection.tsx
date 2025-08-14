@@ -7,7 +7,7 @@ export default function DonationSection() {
     <section className="relative py-14 overflow-hidden">
       <div className="absolute inset-0">
         <Image
-          src="/images/tournament/_DSC8836.jpg"
+          src="/images/gallery/img424.jpg"
           alt="Community gathering"
           fill
           className="object-cover"

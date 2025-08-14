@@ -137,7 +137,7 @@ export default function Navigation() {
 
             <Link
               href="/donate"
-              className="bg-gradient-to-r from-nausa-lightblue to-blue-500 text-white px-8 py-3 rounded-full font-black uppercase tracking-wide border-nausa-lightblue hover:from-white hover:to-white hover:text-nausa-lightblue hover:border-nausa-lightblue border-4 transition-all shadow-lg transform hover:scale-105"
+              className="bg-gradient-to-r from-nausa-lightblue to-blue-500 text-white px-6 py-2 rounded-full font-black uppercase tracking-wide border-nausa-lightblue hover:from-white hover:to-white hover:text-nausa-lightblue hover:border-nausa-lightblue border-2 transition-all shadow-lg transform hover:scale-105"
             >
               Donate
             </Link>

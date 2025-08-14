@@ -5,10 +5,10 @@ const nextConfig: NextConfig = {
     domains: ['localhost'],
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'api.placeholder',
+        protocol: 'https' as const,
+        hostname: 'res.cloudinary.com',
         port: '',
-        pathname: '/**',
+        pathname: '/nausa/**',
       },
     ],
   },

@@ -47,12 +47,12 @@ export default function HeroSection() {
             tournament in North America
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Link
+            {/* <Link
               href="/register"
               className="border-2 w-[32%] border-nausa-lightblue bg-nausa-lightblue text-white px-8 py-3 rounded-full font-black uppercase tracking-wide hover:bg-white hover:text-nausa-lightblue transition-all transform hover:scale-105 shadow-xl text-md"
             >
               Tournament Info
-            </Link>
+            </Link> */}
             <Link
               href="/media"
               className="border-2 w-[32%] border-white bg-white text-nausa-lightblue px-8 py-3 rounded-full font-black uppercase tracking-wide hover:bg-nausa-lightblue  hover:border-white hover:text-white transition-all transform hover:scale-105 text-md"

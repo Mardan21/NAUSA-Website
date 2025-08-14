@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Calendar, MapPin, Trophy, Clock } from "lucide-react";
+import { Calendar, MapPin, Clock } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { TOURNAMENT_2025 } from "@/lib/constants";
 
@@ -40,12 +40,6 @@ export default function UpcomingTournament() {
                     <MapPin className="w-6 h-6 text-nausa-green mr-3" />
                     <span className="font-semibold">
                       {TOURNAMENT_2025.location}
-                    </span>
-                  </div>
-                  <div className="flex items-center text-lg">
-                    <Trophy className="w-6 h-6 text-nausa-green mr-3" />
-                    <span className="font-semibold">
-                      {TOURNAMENT_2025.prizePool} Prize Pool
                     </span>
                   </div>
                   <div className="flex items-center text-lg">

@@ -1,28 +1,21 @@
-import { notFound } from "next/navigation";
+// import { notFound } from "next/navigation";
 import { tournaments } from "../../../data/tournaments";
-import TournamentHero from "@/components/tournaments/TournamentHero";
-import TournamentStats from "@/components/tournaments/TournamentStats";
-import TournamentResults from "@/components/tournaments/TournamentResults";
+// import TournamentHero from "@/components/tournaments/TournamentHero";
+// import TournamentStats from "@/components/tournaments/TournamentStats";
+// import TournamentResults from "@/components/tournaments/TournamentResults";
 
-interface TournamentPageProps {
-  params: {
-    year: string;
-  };
-}
+// interface TournamentPageProps {
+//   params: Promise<{
+//     year: string;
+//   }>;
+// }
 
-export default function TournamentPage({ params }: TournamentPageProps) {
-  const tournament = tournaments.find((t) => t.year.toString() === params.year);
-
-  if (!tournament || tournament.canceled) {
-    notFound();
-  }
-
+// Temporarily disabled for build
+export default function TournamentPage() {
   return (
-    <>
-      <TournamentHero tournament={tournament} />
-      <TournamentStats tournament={tournament} />
-      <TournamentResults tournament={tournament} />
-    </>
+    <div className="min-h-screen flex items-center justify-center">
+      <h1>Coming Soon</h1>
+    </div>
   );
 }
 
