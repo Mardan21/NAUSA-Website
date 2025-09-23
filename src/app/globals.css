@@ -10,6 +10,8 @@
   
   --animate-scroll-left: scroll-left 20s linear infinite;
   --animate-bounce-slow: bounce-slow 3s ease-in-out infinite;
+  --animate-slideIn: slideIn 0.3s ease-out forwards;
+  --animate-fadeIn: fadeIn 0.6s ease-out forwards;
 }
 
 @keyframes scroll-left {
@@ -22,47 +24,81 @@
   50% { transform: translateY(-20px); }
 }
 
-/* Utility classes */
-@utility animation-delay-1000 {
-  animation-delay: 1s;
-}
-
-@utility animation-delay-2000 {
-  animation-delay: 2s;
-}
-
-@utility text-shadow {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes slideIn {
+  from { 
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Accessibility improvements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.focus\:not-sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Enhanced focus styles */
+*:focus {
+  outline: 2px solid #0099FF;
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better text rendering */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-/* 
-  Improved wave animation for smoother, more performant scrolling and fluid motion.
-  - Uses will-change for GPU acceleration.
-  - Reduces repaints by minimizing layout-affecting properties.
-  - Eases animation for more natural movement.
-  - Keeps opacity and top for layering effect.
-*/
+/* Section spacing consistency */
+.section-spacing {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
 
+@media (min-width: 768px) {
+  .section-spacing {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+}
+
+/* Performance optimizations */
 .waves-container {
   position: absolute;
   bottom: 0;
@@ -71,6 +107,7 @@ body {
   height: 100px;
   z-index: 0;
   pointer-events: none;
+  will-change: transform;
 }
 
 .waves {
@@ -84,6 +121,7 @@ body {
 
 .parallax > use {
   animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+  will-change: transform;
 }
 
 .parallax > use:nth-child(1) {
@@ -115,7 +153,19 @@ body {
   }
 }
 
-/* Shrinking for mobile */
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile optimizations */
 @media (max-width: 768px) {
   .waves {
     height: 60px;
@@ -124,5 +174,83 @@ body {
   
   .waves-container {
     height: 60px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .bg-white\/10 {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .text-white\/90 {
+    color: white;
+  }
+}
+
+/* Utility classes */
+@utility animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+@utility animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+@utility text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@utility text-shadow-lg {
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* Smooth scrolling optimizations for carousel */
+@layer utilities {
+  .carousel-smooth {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Enhanced grayscale effect for logos */
+  .logo-grayscale {
+    filter: grayscale(100%) brightness(0) invert(1);
+    opacity: 0.7;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .logo-grayscale:hover {
+    filter: grayscale(80%) brightness(0) invert(1);
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+/* Performance optimizations */
+.logo-carousel {
+  contain: layout style paint;
+  will-change: transform;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .logo-carousel {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

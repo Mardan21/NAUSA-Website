@@ -108,11 +108,11 @@ export default function PhotoGallery({ filterYear }: PhotoGalleryProps) {
           </>
         )}
 
-        <div className="grid grid-cols-4 md:grid-cols-6 gap-4 ">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3 lg:gap-4">
           {currentImages.map((image, index) => (
             <div
               key={image.id}
-              className="relative group cursor-pointer overflow-hidden rounded-lg aspect-square md:h-40 md:w-60"
+              className="relative group cursor-pointer overflow-hidden rounded-lg aspect-square"
               onClick={() => setSelectedImage(startIndex + index)}
             >
               <Image
@@ -122,8 +122,8 @@ export default function PhotoGallery({ filterYear }: PhotoGalleryProps) {
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="absolute bottom-4 left-4 text-white">
-                  <p className="font-bold capitalize text-sm">
+                <div className="absolute bottom-2 left-2 text-white">
+                  <p className="font-bold capitalize text-xs sm:text-sm">
                     {image.category}
                   </p>
                   <p className="text-xs">{image.year}</p>

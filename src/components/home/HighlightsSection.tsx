@@ -43,29 +43,19 @@ export default function HighlightsSection() {
   };
 
   return (
-    <section className="py-14 bg-nausa-lightblue/50 relative overflow-hidden">
-      {/* Background pattern */}
-      {/* <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(246,245,174,0.7) 35px, rgba(165,159,120,.1) 70px)`,
-          }}
-        ></div>
-      </div> */}
-
+    <section className="py-10 sm:py-14 bg-nausa-lightblue/50 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
-        <h2 className="text-3xl font-black text-white text-center mb-12">
+        <h2 className="text-2xl sm:text-3xl font-black text-white text-center mb-8 sm:mb-12">
           FEATURED <span className="text-nausa-vanilla">MEDIA</span>
         </h2>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {highlights.map((highlight) => (
             <div
               key={highlight.id}
               className="group relative overflow-hidden rounded-xl cursor-pointer"
               onClick={() => openVideo(highlight.youtubeId)}
             >
-              <div className="relative h-64">
+              <div className="relative h-48 sm:h-56 lg:h-64 overflow-hidden">
                 <Image
                   src={highlight.thumbnail}
                   alt={highlight.title}
@@ -73,21 +63,20 @@ export default function HighlightsSection() {
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="bg-nausa-vanilla rounded-full p-4">
-                  <Play className="w-8 h-8 text-nausa-lightblue" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10 pointer-events-none"></div>
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20">
+                <div className="bg-nausa-vanilla rounded-full p-3 sm:p-4">
+                  <Play className="w-6 h-6 sm:w-8 sm:h-8 text-nausa-lightblue" />
                 </div>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 h-3/10 bg-white/20 backdrop-blur-xs">
-                <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <p className="text-sm font-bold uppercase text-nausa-vanilla mb-1">
+              <div className="absolute bottom-0 left-0 right-0 bg-white/20 backdrop-blur-sm z-20">
+                <div className="p-3 sm:p-4 text-white">
+                  <p className="text-xs sm:text-sm font-bold uppercase text-nausa-vanilla mb-1">
                     {highlight.category}
                   </p>
-                  <h3 className="text-xl font-bold">{highlight.title}</h3>
-                  {/* <p className="text-sm opacity-75 mt-1">
-                    {highlight.duration}
-                  </p> */}
+                  <h3 className="text-base sm:text-lg lg:text-xl font-bold line-clamp-2">
+                    {highlight.title}
+                  </h3>
                 </div>
               </div>
             </div>
@@ -101,9 +90,9 @@ export default function HighlightsSection() {
           <div className="relative w-full max-w-4xl">
             <button
               onClick={closeVideo}
-              className="absolute -top-12 right-0 text-white hover:text-nausa-vanilla transition-colors z-10"
+              className="absolute -top-8 sm:-top-12 right-0 text-white hover:text-nausa-vanilla transition-colors z-10"
             >
-              <X className="w-8 h-8" />
+              <X className="w-6 h-6 sm:w-8 sm:h-8" />
             </button>
             <div
               className="relative w-full"

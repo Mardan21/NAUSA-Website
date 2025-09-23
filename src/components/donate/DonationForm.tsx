@@ -126,7 +126,7 @@ export default function DonationForm() {
               <h2 className="text-2xl font-bold mb-6">
                 Select Donation Amount
               </h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-4">
                 {donationAmounts.map((amount) => (
                   <button
                     key={amount.value}

@@ -28,10 +28,11 @@ export default function Button({
       "border-4 border-white text-white hover:bg-white hover:text-nausa-blue",
   };
 
+  // FIXED: Mobile responsive sizes
   const sizes = {
-    sm: "px-6 py-2 text-sm",
-    md: "px-8 py-3 text-base",
-    lg: "px-10 py-5 text-lg",
+    sm: "px-4 sm:px-6 py-2 text-xs sm:text-sm",
+    md: "px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base",
+    lg: "px-8 sm:px-10 py-3 sm:py-4 lg:py-5 text-base sm:text-lg",
   };
 
   const buttonClasses = cn(

@@ -30,7 +30,7 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="py-14 pb-20 bg-nausa-lightblue/50 text-white relative overflow-hidden">
+    <section className="py-10 sm:py-14 pb-14 sm:pb-20 bg-nausa-lightblue/50 text-white relative overflow-hidden">
       {/* Wavy background */}
       <div className="waves-container z-[-1]">
         <svg
@@ -81,29 +81,30 @@ export default function StatsSection() {
       </div>
 
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-black text-center mb-16">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-center mb-8 sm:mb-12 lg:mb-16">
           {getYearsSinceStart()} YEARS OF{" "}
           <span className="text-nausa-vanilla">UYGHUR EXCELLENCE</span>
         </h2>
-        <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        {/* FIXED: Mobile responsive grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
               <div key={index} className="text-center group">
-                <div className="relative inline-block mb-4">
-                  <div className="w-30 h-30 bg-nausa-vanilla rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <span className="text-4xl font-black text-nausa-blue">
+                <div className="relative inline-block mb-3 sm:mb-4">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-30 lg:h-30 bg-nausa-vanilla rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <span className="text-2xl sm:text-3xl lg:text-4xl font-black text-nausa-blue">
                       {stat.value}
                     </span>
                   </div>
-                  <div className="absolute -top-2 -right-2 bg-nausa-blue rounded-full p-2">
-                    <Icon className="w-5 h-5 text-nausa-vanilla" />
+                  <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-nausa-blue rounded-full p-1.5 sm:p-2">
+                    <Icon className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-nausa-vanilla" />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">
+                <h3 className="text-sm sm:text-base lg:text-xl font-bold text-white mb-1 sm:mb-2">
                   {stat.label}
                 </h3>
-                <p className="font-bold text-nausa-vanilla text-md">
+                <p className="font-bold text-nausa-vanilla text-xs sm:text-sm lg:text-base">
                   {stat.subtext}
                 </p>
               </div>
