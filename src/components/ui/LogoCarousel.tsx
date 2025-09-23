@@ -27,9 +27,10 @@ export default function LogoCarousel({
 
     let animationId: number;
     let scrollPos = 0;
+    const step = Math.max(0.2, speed / 60); // pixels per frame
 
     const animate = () => {
-      scrollPos += 0.5;
+      scrollPos += step;
       if (scrollPos >= scrollContainer.scrollWidth / 2) {
         scrollPos = 0;
       }
@@ -44,7 +45,7 @@ export default function LogoCarousel({
         cancelAnimationFrame(animationId);
       }
     };
-  }, [logos]);
+  }, [logos, speed]);
 
   // Duplicate logos for infinite effect
   const duplicatedLogos = [...logos, ...logos];

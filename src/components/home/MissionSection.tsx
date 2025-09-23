@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Trophy, Target, Users, Heart, Award, Globe } from "lucide-react";
+import { Trophy, Target, Users, Heart, Globe } from "lucide-react";
 
 export default function MissionSection() {
   const missionPillars = [
@@ -48,7 +48,7 @@ export default function MissionSection() {
               OUR <span className="text-nausa-vanilla">MISSION</span>
             </h2>
             <p className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 text-nausa-vanilla italic">
-              "Promoting unity through sports"
+              &quot;Promoting unity through sports&quot;
             </p>
           </div>
 

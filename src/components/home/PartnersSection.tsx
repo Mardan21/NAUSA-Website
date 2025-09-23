@@ -15,7 +15,7 @@ export default function PartnersSection() {
 
   // Separate by sponsorship level for better presentation
   const platinumSponsors = sponsors.filter((s) => s.level === "platinum");
-  const goldSponsors = sponsors.filter((s) => s.level === "gold");
+  // const goldSponsors = sponsors.filter((s) => s.level === "gold");
 
   return (
     <section className="relative py-12 sm:py-16 lg:py-20 bg-nausa-blue overflow-hidden">

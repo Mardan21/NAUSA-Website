@@ -1,9 +1,6 @@
 import Image from "next/image";
-import { Heart, Target, Users, Award } from "lucide-react";
+import { Heart, Target, Award, Users as UsersIcon } from "lucide-react";
 import Button from "@/components/ui/Button";
-import { sponsors } from "../../data/sponsors";
-import LogoCarousel from "@/components/ui/LogoCarousel";
-import { Handshake, Star, TrendingUp, Users as UsersIcon } from "lucide-react";
 
 export default function DonationSection() {
   return (
