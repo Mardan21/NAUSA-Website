@@ -55,5 +55,12 @@ export const sponsors: Sponsor[] = [
     logoUrl: "/images/sponsors/metrica_academy_logo.png",
     website: "https://www.metricaacademy.com/",
     level: "gold"
+  },
+  {
+    id: 8,
+    name: "Rawan",
+    logoUrl: "/images/sponsors/rawan_logo.png",
+    website: "https://www.rawan.com/", // or whatever their website is
+    level: "gold" // or "platinum", "silver", "bronze" depending on their sponsorship level
   }
 ]; 

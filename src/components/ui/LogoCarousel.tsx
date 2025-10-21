@@ -16,7 +16,7 @@ interface LogoCarouselProps {
 
 export default function LogoCarousel({
   logos,
-  speed = 30,
+  speed = 90,
   className = "",
 }: LogoCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
