@@ -39,13 +39,13 @@ export default function UpcomingTournament() {
                   <div className="flex items-center text-lg">
                     <MapPin className="w-6 h-6 text-nausa-green mr-3" />
                     <span className="font-semibold">
-                      {TOURNAMENT_2025.location}
+                      {TOURNAMENT_2025.location}, {TOURNAMENT_2025.city}
                     </span>
                   </div>
                   <div className="flex items-center text-lg">
                     <Clock className="w-6 h-6 text-nausa-green mr-3" />
                     <span className="font-semibold">
-                      Early Bird Deadline: {TOURNAMENT_2025.earlyBirdDeadline}
+                      Opening Ceremony: {TOURNAMENT_2025.openingCeremony.date} @ {TOURNAMENT_2025.openingCeremony.time}
                     </span>
                   </div>
                 </div>

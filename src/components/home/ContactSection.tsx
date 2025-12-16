@@ -68,15 +68,15 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="py-8 sm:py-12 lg:py-16 bg-nausa-blue" id="contact">
+    <section className="py-8 sm:py-12 lg:py-16 bg-nausa-lightblue" id="contact">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           {/* Header */}
           <div className="text-center mb-6 sm:mb-8">
-            <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-nausa-lightblue rounded-full mb-4">
-              <MessageSquare className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+            <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-nausa-blue rounded-full mb-4">
+              <MessageSquare className="w-6 h-6 sm:w-8 sm:h-8 text-nausa-vanilla" />
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-2">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-nausa-blue mb-2">
               GET IN <span className="text-nausa-vanilla">TOUCH</span>
             </h2>
             <p className="text-gray-300 text-sm sm:text-base max-w-lg mx-auto">
@@ -88,7 +88,7 @@ export default function ContactSection() {
             {/* Contact Info - Desktop Side Panel */}
             <div className="lg:col-span-1 space-y-4 lg:space-y-6">
               {/* Quick Contact */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20">
+              <div className="bg-nausa-blue/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20">
                 <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
                   <Mail className="w-5 h-5 text-nausa-vanilla" />
                   Quick Contact
@@ -102,7 +102,7 @@ export default function ContactSection() {
               </div>
 
               {/* Response Time */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20">
+              <div className="bg-nausa-blue/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20">
                 <h3 className="text-lg font-bold text-white mb-2">
                   Response Time
                 </h3>
@@ -114,7 +114,7 @@ export default function ContactSection() {
 
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-xl p-4 sm:p-6 border border-white/20">
+              <div className="bg-nausa-vanilla/70 backdrop-blur-sm rounded-xl shadow-xl p-4 sm:p-6 border border-nausa-blue/20">
                 <form onSubmit={handleSubmit} className="space-y-4">
                   {/* Name Fields */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -133,7 +133,7 @@ export default function ContactSection() {
                         onChange={handleChange}
                         required
                         disabled={isSubmitting}
-                        className="w-full text-nausa-blue px-3 py-2 sm:py-2.5 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-nausa-lightblue focus:border-nausa-lightblue font-medium text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full text-nausa-blue px-3 py-2 sm:py-2.5 border-2 border-nausa-blue rounded-lg focus:ring-2 focus:ring-nausa-lightblue focus:border-nausa-lightblue font-medium text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                         placeholder="John"
                       />
                     </div>
@@ -152,7 +152,7 @@ export default function ContactSection() {
                         onChange={handleChange}
                         required
                         disabled={isSubmitting}
-                        className="w-full text-nausa-blue px-3 py-2 sm:py-2.5 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-nausa-lightblue focus:border-nausa-lightblue font-medium text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full text-nausa-blue px-3 py-2 sm:py-2.5 border-2 border-nausa-blue rounded-lg focus:ring-2 focus:ring-nausa-lightblue focus:border-nausa-lightblue font-medium text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                         placeholder="Doe"
                       />
                     </div>
@@ -174,7 +174,7 @@ export default function ContactSection() {
                       onChange={handleChange}
                       required
                       disabled={isSubmitting}
-                      className="w-full text-nausa-blue px-3 py-2 sm:py-2.5 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-nausa-lightblue focus:border-nausa-lightblue font-medium text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full text-nausa-blue px-3 py-2 sm:py-2.5 border-2 border-nausa-blue rounded-lg focus:ring-2 focus:ring-nausa-lightblue focus:border-nausa-lightblue font-medium text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                       placeholder="john@example.com"
                     />
                   </div>
@@ -194,7 +194,7 @@ export default function ContactSection() {
                       onChange={handleChange}
                       required
                       disabled={isSubmitting}
-                      className="w-full text-nausa-blue px-3 py-2 sm:py-2.5 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-nausa-lightblue focus:border-nausa-lightblue font-medium text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full text-nausa-blue px-3 py-2 sm:py-2.5 border-2 border-nausa-blue rounded-lg focus:ring-2 focus:ring-nausa-lightblue focus:border-nausa-lightblue font-medium text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <option value="">Select a subject...</option>
                       <option value="general">General Inquiry</option>
@@ -224,7 +224,7 @@ export default function ContactSection() {
                       required
                       disabled={isSubmitting}
                       rows={3}
-                      className="w-full text-nausa-blue px-3 py-2 sm:py-2.5 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-nausa-lightblue focus:border-nausa-lightblue font-medium text-sm resize-none transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full text-nausa-blue px-3 py-2 sm:py-2.5 border-2 border-nausa-blue rounded-lg focus:ring-2 focus:ring-nausa-lightblue focus:border-nausa-lightblue font-medium text-sm resize-none transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                       placeholder="Tell us how we can help you..."
                     />
                   </div>

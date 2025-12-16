@@ -25,7 +25,7 @@ export default function DonationImpact() {
   ];
 
   return (
-    <section className="py-20 bg-nausa-lightblue/70">
+    <section className="py-20 bg-nausa-lightblue">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-black text-center mb-12">

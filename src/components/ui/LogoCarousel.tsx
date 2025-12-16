@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 interface LogoCarouselProps {
@@ -16,50 +16,60 @@ interface LogoCarouselProps {
 
 export default function LogoCarousel({
   logos,
-  speed = 90,
+  speed = 2,
   className = "",
 }: LogoCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollPosRef = useRef(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
 
     let animationId: number;
-    let scrollPos = 0;
-    const step = Math.max(0.2, speed / 60); // pixels per frame
+    const pixelsPerFrame = speed; // pixels per frame at 60fps
 
     const animate = () => {
-      scrollPos += step;
-      if (scrollPos >= scrollContainer.scrollWidth / 2) {
-        scrollPos = 0;
+      if (!isPaused) {
+        scrollPosRef.current += pixelsPerFrame;
+
+        // Get the width of one set of logos (1/3 of total since we triple them)
+        const singleSetWidth = scrollContainer.scrollWidth / 3;
+
+        // Reset seamlessly when we've scrolled past one full set
+        if (scrollPosRef.current >= singleSetWidth) {
+          scrollPosRef.current = scrollPosRef.current - singleSetWidth;
+        }
       }
-      scrollContainer.scrollLeft = scrollPos;
+
+      scrollContainer.style.transform = `translateX(-${scrollPosRef.current}px)`;
       animationId = requestAnimationFrame(animate);
     };
 
     animationId = requestAnimationFrame(animate);
 
     return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
+      cancelAnimationFrame(animationId);
     };
-  }, [logos, speed]);
+  }, [speed, isPaused]);
 
-  // Duplicate logos for infinite effect
-  const duplicatedLogos = [...logos, ...logos];
+  // Triple logos for seamless infinite scroll
+  const duplicatedLogos = [...logos, ...logos, ...logos];
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
+    <div
+      className={`relative overflow-hidden ${className}`}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       {/* Gradient overlays for seamless loop effect */}
       <div className="absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-nausa-blue to-transparent pointer-events-none" />
       <div className="absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-nausa-blue to-transparent pointer-events-none" />
 
       <div
         ref={scrollRef}
-        className="flex gap-8 lg:gap-12 overflow-x-hidden whitespace-nowrap"
-        style={{ scrollBehavior: "auto" }}
+        className="flex gap-8 lg:gap-12 will-change-transform"
       >
         {duplicatedLogos.map((logo, index) => (
           <a

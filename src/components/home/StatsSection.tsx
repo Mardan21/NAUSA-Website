@@ -30,7 +30,7 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="py-10 sm:py-14 pb-14 sm:pb-20 bg-nausa-lightblue/50 text-white relative overflow-hidden">
+    <section className="py-10 sm:py-14 pb-14 sm:pb-20 bg-nausa-lightblue text-white relative overflow-hidden">
       {/* Wavy background */}
       <div className="waves-container z-[-1]">
         <svg

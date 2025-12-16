@@ -48,7 +48,7 @@ const values = [
 
 export default function ValuesSection() {
   return (
-    <section className="py-10 sm:py-14 bg-nausa-blue/50 text-white">
+    <section className="py-10 sm:py-14 bg-nausa-blue text-white">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl sm:text-3xl font-black text-center mb-8 sm:mb-12">
           OUR <span className="text-nausa-vanilla">VALUES</span>

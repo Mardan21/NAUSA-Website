@@ -43,7 +43,7 @@ export default function HighlightsSection() {
   };
 
   return (
-    <section className="py-10 sm:py-14 bg-nausa-lightblue/50 relative overflow-hidden">
+    <section className="py-10 sm:py-14 bg-nausa-lightblue relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="text-2xl sm:text-3xl font-black text-white text-center mb-8 sm:mb-12">
           FEATURED <span className="text-nausa-vanilla">MEDIA</span>

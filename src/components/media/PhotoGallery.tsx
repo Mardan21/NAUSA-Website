@@ -67,7 +67,7 @@ export default function PhotoGallery({ filterYear }: PhotoGalleryProps) {
   return (
     <section
       className={cn(
-        filterYear ? "py-14 bg-white" : "py-14 bg-nausa-lightblue/50"
+        filterYear ? "py-14 bg-white" : "py-14 bg-nausa-lightblue"
       )}
     >
       <div className="container mx-auto px-4">
@@ -151,8 +151,8 @@ export default function PhotoGallery({ filterYear }: PhotoGalleryProps) {
 
             <div className="text-center">
               <p className="text-sm font-bold text-nausa-vanilla">
-                Page {currentPage} of {totalPages} ({endIndex} / {totalImages}{" "}
-                images)
+                Page {currentPage} of {totalPages} (Showing {startIndex + 1}-
+                {Math.min(endIndex, totalImages)} of {totalImages} images)
               </p>
             </div>
 
@@ -175,7 +175,7 @@ export default function PhotoGallery({ filterYear }: PhotoGalleryProps) {
         {totalPages === 1 && totalImages > 0 && (
           <div className="text-center pt-10">
             <p className="text-sm font-bold text-nausa-vanilla">
-              Page 1 of 1 ({totalImages} / {totalImages} images)
+              Showing 1-{totalImages} of {totalImages} images
             </p>
           </div>
         )}

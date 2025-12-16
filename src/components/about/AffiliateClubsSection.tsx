@@ -3,7 +3,7 @@ import { clubTeams } from "../../data/teams";
 
 export default function AffiliateClubs() {
   return (
-    <section className="py-10 sm:py-14 bg-nausa-lightblue/50">
+    <section className="py-10 sm:py-14 bg-nausa-lightblue">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl sm:text-3xl font-black text-center mb-8 sm:mb-12">
           AFFILIATE <span className="text-nausa-vanilla">CLUBS</span>

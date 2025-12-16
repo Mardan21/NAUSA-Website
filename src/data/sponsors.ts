@@ -37,30 +37,23 @@ export const sponsors: Sponsor[] = [
   },
   {
     id: 5,
-    name: "Tech Circle",
-    logoUrl: "/images/sponsors/tech_circle_logo.png",
-    website: "https://www.techcircleschool.com/",
-    level: "gold"
-  },
-  {
-    id: 6,
-    name: "Mims Food",
-    logoUrl: "/images/sponsors/mims_food_logo.png",
-    website: "https://www.mimsfood.com/",
-    level: "gold"
-  },
-  {
-    id: 7,
     name: "Metrica Academy",
     logoUrl: "/images/sponsors/metrica_academy_logo.png",
     website: "https://www.metricaacademy.com/",
     level: "gold"
   },
   {
-    id: 8,
-    name: "Rawan",
-    logoUrl: "/images/sponsors/rawan_logo.png",
-    website: "https://www.rawan.com/", // or whatever their website is
-    level: "gold" // or "platinum", "silver", "bronze" depending on their sponsorship level
+    id: 6,
+    name: "Rawan Mentorship",
+    logoUrl: "/images/sponsors/rawan_logo.svg",
+    website: "https://www.rawanmentorship.org/",
+    level: "gold"
+  },
+  {
+    id: 7,
+    name: "United Uyghur Youth",
+    logoUrl: "/images/sponsors/uuy_logo_1.png",
+    website: "https://www.uniteduyghuryouth.org/",
+    level: "gold"
   }
 ]; 

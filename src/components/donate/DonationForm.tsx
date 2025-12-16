@@ -185,7 +185,7 @@ export default function DonationForm() {
             {/* Frequency Selection */}
             <div className="mb-10">
               <h2 className="text-2xl font-bold mb-6">Select Frequency</h2>
-              <div className="grid md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {donationFrequencies.map((frequency) => (
                   <button
                     key={frequency.value}

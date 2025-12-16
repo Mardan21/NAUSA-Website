@@ -2,7 +2,7 @@ export default function AboutHero() {
   return (
     <section className="relative min-h-screen overflow-hidden pt-16 sm:pt-20">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-t from-nausa-lightblue/70 to-nausa-blue/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-nausa-lightblue to-nausa-blue"></div>
       </div>
       <div className="relative z-10 flex items-center justify-center min-h-screen py-8 sm:py-12">
         <div className="text-center text-white px-4">

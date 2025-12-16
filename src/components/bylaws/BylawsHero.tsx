@@ -10,7 +10,7 @@ export default function BylawsHero() {
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-nausa-blue to-nausa-lightblue/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-nausa-blue/90 to-nausa-lightblue/70"></div>
       </div>
       <div className="relative z-10 h-full flex items-center justify-center">
         <div className="text-center text-white">

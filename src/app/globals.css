@@ -16,7 +16,12 @@
 
 @keyframes scroll-left {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to { transform: translateX(-33.33%); }
+}
+
+/* Seamless infinite scroll animation */
+.animate-scroll {
+  animation: scroll-left 20s linear infinite;
 }
 
 @keyframes bounce-slow {

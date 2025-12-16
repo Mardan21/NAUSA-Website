@@ -7,17 +7,17 @@ export default function BylawsPage() {
     <>
       <BylawsHero />
 
-      <section className="py-20 bg-nausa-lightblue/50">
+      <section className="py-20 bg-nausa-blue">
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Download Button */}
           <div className="flex justify-end mb-8">
             <a
               href="/documents/nausa_bylaws.pdf"
               download
-              className="inline-flex items-center px-6 py-3 bg-nausa-blue text-nausa-vanilla/70 hover:bg-nausa-vanilla/50 rounded-lg  transition-colors font-medium"
+              className="inline-flex items-center px-6 py-3 bg-nausa-lightblue text-white hover:bg-nausa-vanilla/50 rounded-lg  transition-colors font-medium"
             >
               <Download className="w-5 h-5 mr-2" />
-              Download PDF Version
+              Download PDF
             </a>
           </div>
 

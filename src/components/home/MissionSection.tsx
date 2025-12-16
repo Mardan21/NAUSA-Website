@@ -85,33 +85,6 @@ export default function MissionSection() {
               );
             })}
           </div>
-
-          {/* Call to Action */}
-          <div className="text-center mt-8 sm:mt-12">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 sm:p-8 border border-white/20 max-w-2xl mx-auto">
-              <h3 className="text-lg sm:text-xl font-bold text-nausa-vanilla mb-3">
-                Join Our Mission
-              </h3>
-              <p className="text-sm sm:text-base text-gray-300 mb-4">
-                Be part of something bigger. Help us build bridges through
-                sports and preserve our culture for future generations.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <a
-                  href="/about"
-                  className="bg-nausa-lightblue text-white px-6 py-3 rounded-full font-bold uppercase tracking-wide hover:bg-white hover:text-nausa-lightblue transition-all transform hover:scale-105 text-sm"
-                >
-                  Learn More
-                </a>
-                <a
-                  href="/donate"
-                  className="border-2 border-nausa-vanilla text-nausa-vanilla px-6 py-3 rounded-full font-bold uppercase tracking-wide hover:bg-nausa-vanilla hover:text-nausa-blue transition-all transform hover:scale-105 text-sm"
-                >
-                  Support Us
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
