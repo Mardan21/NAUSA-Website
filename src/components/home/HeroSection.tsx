@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, MapPin, Calendar, Users } from "lucide-react";
-import TournamentCountdown from "./TournamentCountdown";
+import TournamentStandings from "./TournamentStandings";
 import TournamentFlyers from "./TournamentFlyers";
 import { TOURNAMENT_2025 } from "@/lib/constants";
 
@@ -35,12 +35,9 @@ export default function HeroSection() {
                 2025
               </h1>
 
-              {/* Countdown Timer */}
+              {/* Tournament Standings */}
               <div className="mb-4 lg:mb-6 flex flex-col items-center lg:items-start">
-                <p className="text-xs sm:text-sm font-bold text-nausa-vanilla mb-2 uppercase tracking-wider">
-                  Countdown to Kickoff
-                </p>
-                <TournamentCountdown />
+                <TournamentStandings />
               </div>
 
               {/* Venue and Date Info */}
@@ -85,16 +82,16 @@ export default function HeroSection() {
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 lg:gap-4 justify-center lg:justify-start items-center">
+              <div className="flex flex-row gap-2 sm:gap-3 lg:gap-4 justify-center lg:justify-start items-center">
                 <Link
                   href="/media"
-                  className="w-full sm:w-auto border-2 border-white bg-white text-nausa-lightblue px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded-full font-bold sm:font-black uppercase tracking-wide hover:bg-nausa-lightblue hover:border-white hover:text-white transition-all transform hover:scale-105 text-xs sm:text-sm lg:text-base text-center"
+                  className="border-2 border-white bg-white text-nausa-lightblue px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded-full font-bold sm:font-black uppercase tracking-wide hover:bg-nausa-lightblue hover:border-white hover:text-white transition-all transform hover:scale-105 text-xs sm:text-sm lg:text-base text-center"
                 >
                   Past Highlights
                 </Link>
                 <Link
                   href="/about"
-                  className="w-full sm:w-auto border-2 border-nausa-lightblue bg-nausa-lightblue text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded-full font-bold sm:font-black uppercase tracking-wide hover:bg-white hover:text-nausa-lightblue transition-all transform hover:scale-105 text-xs sm:text-sm lg:text-base text-center"
+                  className="border-2 border-nausa-lightblue bg-nausa-lightblue text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded-full font-bold sm:font-black uppercase tracking-wide hover:bg-white hover:text-nausa-lightblue transition-all transform hover:scale-105 text-xs sm:text-sm lg:text-base text-center"
                 >
                   Learn More
                 </Link>

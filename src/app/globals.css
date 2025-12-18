@@ -7,7 +7,7 @@
   --color-nausa-lightblue: #0099FF;
   --color-nausa-sage: #A59F78;
   --color-nausa-vanilla: #F6F5AE;
-  
+
   --animate-scroll-left: scroll-left 20s linear infinite;
   --animate-bounce-slow: bounce-slow 3s ease-in-out infinite;
   --animate-slideIn: slideIn 0.3s ease-out forwards;
@@ -15,8 +15,13 @@
 }
 
 @keyframes scroll-left {
-  from { transform: translateX(0); }
-  to { transform: translateX(-33.33%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-33.33%);
+  }
 }
 
 /* Seamless infinite scroll animation */
@@ -25,24 +30,37 @@
 }
 
 @keyframes bounce-slow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 @keyframes slideIn {
-  from { 
+  from {
     opacity: 0;
     transform: translateY(-10px);
   }
-  to { 
+
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* Accessibility improvements */
@@ -70,7 +88,7 @@
 }
 
 /* Enhanced focus styles */
-*:focus {
+*:focus:not(:where(.focus\:outline-none:focus)) {
   outline: 2px solid #0099FF;
   outline-offset: 2px;
 }
@@ -124,27 +142,27 @@ body {
   max-height: 150px;
 }
 
-.parallax > use {
-  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+.parallax>use {
+  animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
   will-change: transform;
 }
 
-.parallax > use:nth-child(1) {
+.parallax>use:nth-child(1) {
   animation-delay: -2s;
   animation-duration: 7s;
 }
 
-.parallax > use:nth-child(2) {
+.parallax>use:nth-child(2) {
   animation-delay: -3s;
   animation-duration: 10s;
 }
 
-.parallax > use:nth-child(3) {
+.parallax>use:nth-child(3) {
   animation-delay: -4s;
   animation-duration: 13s;
 }
 
-.parallax > use:nth-child(4) {
+.parallax>use:nth-child(4) {
   animation-delay: -5s;
   animation-duration: 20s;
 }
@@ -153,13 +171,15 @@ body {
   0% {
     transform: translate3d(-90px, 0, 0);
   }
-  100% { 
+
+  100% {
     transform: translate3d(85px, 0, 0);
   }
 }
 
 /* Reduced motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -176,7 +196,7 @@ body {
     height: 60px;
     min-height: 60px;
   }
-  
+
   .waves-container {
     height: 60px;
   }
@@ -187,7 +207,7 @@ body {
   .bg-white\/10 {
     background-color: rgba(255, 255, 255, 0.9);
   }
-  
+
   .text-white\/90 {
     color: white;
   }
@@ -230,19 +250,44 @@ body {
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
   }
-  
+
   /* Enhanced grayscale effect for logos */
   .logo-grayscale {
     filter: grayscale(100%) brightness(0) invert(1);
     opacity: 0.7;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   .logo-grayscale:hover {
     filter: grayscale(80%) brightness(0) invert(1);
     opacity: 0.9;
     transform: scale(1.05);
   }
+}
+
+/* Custom dark scrollbar styling */
+.dark-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dark-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.dark-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.dark-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Firefox scrollbar styling */
+.dark-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.05);
 }
 
 /* Performance optimizations */
