@@ -288,6 +288,7 @@ body {
 .dark-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.05);
+  scrollbar-gutter: stable;
 }
 
 /* Performance optimizations */

@@ -188,12 +188,12 @@ function GoalsLeaderboard() {
 
     return (
         <div className="overflow-x-auto">
-            <table className="w-full text-white text-xs sm:text-sm">
+            <table className="w-full table-fixed text-white text-xs sm:text-sm">
                 <thead>
                     <tr className="border-b border-white/20 text-white/70">
-                        <th className="py-1 px-2 text-left w-8"></th>
+
                         <th className="py-1 px-2 text-left">Player</th>
-                        <th className="py-1 px-2 text-right">Goals</th>
+                        <th className="py-1 px-2 text-right w-16">Goals</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -219,12 +219,12 @@ function YellowCardsLeaderboard() {
 
     return (
         <div className="overflow-x-auto">
-            <table className="w-full text-white text-xs sm:text-sm">
+            <table className="w-full table-fixed text-white text-xs sm:text-sm">
                 <thead>
                     <tr className="border-b border-white/20 text-white/70">
-                        <th className="py-1 px-2 text-left w-8"></th>
+
                         <th className="py-1 px-2 text-left">Player</th>
-                        <th className="py-1 px-2 text-right">Cards</th>
+                        <th className="py-1 px-2 text-right w-16">Cards</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -260,12 +260,12 @@ function RedCardsLeaderboard() {
 
     return (
         <div className="overflow-x-auto">
-            <table className="w-full text-white text-xs sm:text-sm">
+            <table className="w-full table-fixed text-white text-xs sm:text-sm">
                 <thead>
                     <tr className="border-b border-white/20 text-white/70">
-                        <th className="py-1 px-2 text-left w-8"></th>
+
                         <th className="py-1 px-2 text-left">Player</th>
-                        <th className="py-1 px-2 text-right">Cards</th>
+                        <th className="py-1 px-2 text-right w-16">Cards</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -307,9 +307,9 @@ function PlayerStatRow({
             className={`border-b border-white/10 ${isEven ? "bg-white/5" : ""
                 } hover:bg-white/10 transition-colors`}
         >
-            <td className="py-2 px-2 text-white/70 font-bold">{rank}</td>
-            <td className="py-2 px-2">
+            <td className="py-2 px-1">
                 <div className="flex items-center gap-2">
+                    <span className="w-6 text-center text-white/70 font-bold flex-shrink-0">{rank}</span>
                     {team && (
                         <div className="w-6 h-6 rounded-full overflow-hidden bg-white/20 flex-shrink-0">
                             <Image
@@ -321,7 +321,7 @@ function PlayerStatRow({
                             />
                         </div>
                     )}
-                    <div className="flex flex-col">
+                    <div className="flex flex-col items-start ml-1">
                         <span className="font-bold">No. {player.jerseyNumber}</span>
                         <span className="text-white/60 text-[10px] sm:text-xs">{teamAbbrev}</span>
                     </div>

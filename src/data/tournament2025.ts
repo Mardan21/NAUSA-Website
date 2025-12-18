@@ -46,12 +46,12 @@ export function getPoints(standing: TeamStanding): number {
 export const standings: TeamStanding[] = [
     {
         teamId: TEAM_IDS.UYGHUR_UNITED,
-        played: 1,
+        played: 2,
         wins: 1,
         draws: 0,
-        losses: 0,
-        goalsFor: 5,
-        goalsAgainst: 1,
+        losses: 1,
+        goalsFor: 6,
+        goalsAgainst: 3,
     },
     {
         teamId: TEAM_IDS.LACHIN_FC,
@@ -64,12 +64,12 @@ export const standings: TeamStanding[] = [
     },
     {
         teamId: TEAM_IDS.SF_BAY,
-        played: 1,
-        wins: 0,
+        played: 2,
+        wins: 1,
         draws: 0,
         losses: 1,
-        goalsFor: 1,
-        goalsAgainst: 2,
+        goalsFor: 3,
+        goalsAgainst: 3,
     },
     {
         teamId: TEAM_IDS.BNYUU,
