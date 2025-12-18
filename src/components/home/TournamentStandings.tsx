@@ -73,6 +73,7 @@ function StandingsTable({
                     <tr className="border-b border-white/20 text-white/70">
                         <th className="py-2 px-2 text-left w-8"></th>
                         <th className="py-2 px-2 text-left">Club</th>
+                        <th className="py-2 px-2 text-center w-8">MP</th>
                         <th className="py-2 px-2 text-center w-8">W</th>
                         <th className="py-2 px-2 text-center w-8">D</th>
                         <th className="py-2 px-2 text-center w-8">L</th>
@@ -112,6 +113,7 @@ function StandingsTable({
                                         <span className="font-semibold truncate">{abbrev}</span>
                                     </div>
                                 </td>
+                                <td className="py-2 px-2 text-center">{standing.played}</td>
                                 <td className="py-2 px-2 text-center">{standing.wins}</td>
                                 <td className="py-2 px-2 text-center">{standing.draws}</td>
                                 <td className="py-2 px-2 text-center">{standing.losses}</td>
