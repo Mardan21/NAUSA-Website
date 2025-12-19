@@ -12,6 +12,7 @@ import {
     getPoints,
     getTeamCardTotals,
     TEAM_ABBREVIATIONS,
+    TEAM_ABBREVIATIONS_SHORT,
     assignRanks,
     type PlayerStat,
 } from "@/data/tournament2025";
@@ -26,7 +27,7 @@ export default function TournamentStandings() {
     const sortedStandings = getSortedStandings();
 
     return (
-        <div className="w-full max-w-md lg:max-w-lg">
+        <div className="w-full max-w-md lg:max-w-lg overflow-hidden">
             {/* Main Tab Buttons */}
             <div className="flex">
                 <button
@@ -68,28 +69,29 @@ function StandingsTable({
     standings: ReturnType<typeof getSortedStandings>;
 }) {
     return (
-        <div className="overflow-x-auto dark-scrollbar">
-            <table className="w-full text-white text-xs sm:text-sm">
+        <div>
+            <table className="w-full table-fixed text-white text-xs sm:text-sm">
                 <thead>
-                    <tr className="border-b border-white/20 text-white/70">
-                        <th className="py-2 px-2 text-left w-8"></th>
-                        <th className="py-2 px-2 text-left">Club</th>
-                        <th className="py-2 px-2 text-center w-8">MP</th>
-                        <th className="py-2 px-2 text-center w-8">W</th>
-                        <th className="py-2 px-2 text-center w-8">D</th>
-                        <th className="py-2 px-2 text-center w-8">L</th>
-                        <th className="py-2 px-2 text-center w-8">Y</th>
-                        <th className="py-2 px-2 text-center w-8">R</th>
-                        <th className="py-2 px-2 text-center w-8 hidden sm:table-cell">GF</th>
-                        <th className="py-2 px-2 text-center w-8 hidden sm:table-cell">GA</th>
-                        <th className="py-2 px-2 text-center w-10">GD</th>
-                        <th className="py-2 px-2 text-center w-10 font-bold">Pts</th>
+                    <tr className="border-b border-white/20 text-white/70 text-[10px] sm:text-xs">
+                        <th className="py-2 px-1 text-left w-6"></th>
+                        <th className="py-2 px-1 text-left">Club</th>
+                        <th className="py-2 px-1 text-center w-6">MP</th>
+                        <th className="py-2 px-1 text-center w-6">W</th>
+                        <th className="py-2 px-1 text-center w-6">D</th>
+                        <th className="py-2 px-1 text-center w-6">L</th>
+                        <th className="py-2 px-1 text-center w-6">Y</th>
+                        <th className="py-2 px-1 text-center w-6">R</th>
+                        <th className="py-2 px-1 text-center w-6">GF</th>
+                        <th className="py-2 px-1 text-center w-6">GA</th>
+                        <th className="py-2 px-1 text-center w-8">GD</th>
+                        <th className="py-2 px-1 text-center w-8 font-bold">Pts</th>
                     </tr>
                 </thead>
                 <tbody>
                     {standings.map((standing, index) => {
                         const team = getTeamById(standing.teamId);
                         const abbrev = TEAM_ABBREVIATIONS[standing.teamId];
+                        const abbrevShort = TEAM_ABBREVIATIONS_SHORT[standing.teamId];
                         const gd = getGoalDifference(standing);
                         const pts = getPoints(standing);
                         const cardTotals = getTeamCardTotals(standing.teamId);
@@ -100,35 +102,36 @@ function StandingsTable({
                                 className={`border-b border-white/10 ${index % 2 === 0 ? "bg-white/5" : ""
                                     } hover:bg-white/10 transition-colors`}
                             >
-                                <td className="py-2 px-2 text-white/70 font-bold">{index + 1}</td>
-                                <td className="py-2 px-2">
+                                <td className="py-2 px-1 text-white/70 font-bold">{index + 1}</td>
+                                <td className="py-2 px-1">
                                     <div className="flex items-center gap-2">
                                         {team && (
-                                            <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden bg-white/20 flex-shrink-0">
+                                            <div className="w-5 h-5 md:w-6 md:h-6 rounded-full overflow-hidden bg-white/20 flex-shrink-0">
                                                 <Image
                                                     src={team.logoUrl}
                                                     alt={team.name}
-                                                    width={28}
-                                                    height={28}
+                                                    width={24}
+                                                    height={24}
                                                     className="w-full h-full object-cover"
                                                 />
                                             </div>
                                         )}
-                                        <span className="font-semibold truncate">{abbrev}</span>
+                                        <span className="font-semibold truncate hidden md:inline">{abbrev}</span>
+                                        <span className="font-semibold truncate md:hidden">{abbrevShort}</span>
                                     </div>
                                 </td>
-                                <td className="py-2 px-2 text-center">{standing.played}</td>
-                                <td className="py-2 px-2 text-center">{standing.wins}</td>
-                                <td className="py-2 px-2 text-center">{standing.draws}</td>
-                                <td className="py-2 px-2 text-center">{standing.losses}</td>
-                                <td className="py-2 px-2 text-center text-yellow-400">{cardTotals.yellowCards}</td>
-                                <td className="py-2 px-2 text-center text-red-500">{cardTotals.redCards}</td>
-                                <td className="py-2 px-2 text-center hidden sm:table-cell">{standing.goalsFor}</td>
-                                <td className="py-2 px-2 text-center hidden sm:table-cell">{standing.goalsAgainst}</td>
-                                <td className="py-2 px-2 text-center">
+                                <td className="py-2 px-1 text-center">{standing.played}</td>
+                                <td className="py-2 px-1 text-center">{standing.wins}</td>
+                                <td className="py-2 px-1 text-center">{standing.draws}</td>
+                                <td className="py-2 px-1 text-center">{standing.losses}</td>
+                                <td className="py-2 px-1 text-center text-yellow-400">{cardTotals.yellowCards}</td>
+                                <td className="py-2 px-1 text-center text-red-500">{cardTotals.redCards}</td>
+                                <td className="py-2 px-1 text-center">{standing.goalsFor}</td>
+                                <td className="py-2 px-1 text-center">{standing.goalsAgainst}</td>
+                                <td className="py-2 px-1 text-center">
                                     {gd > 0 ? `+${gd}` : gd}
                                 </td>
-                                <td className="py-2 px-2 text-center font-bold">{pts}</td>
+                                <td className="py-2 px-1 text-center font-bold">{pts}</td>
                             </tr>
                         );
                     })}

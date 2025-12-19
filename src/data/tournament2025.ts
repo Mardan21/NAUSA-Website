@@ -17,6 +17,14 @@ export const TEAM_ABBREVIATIONS: Record<number, string> = {
     [TEAM_IDS.BNYUU]: 'BNYUU',
 };
 
+// Short abbreviations for mobile display
+export const TEAM_ABBREVIATIONS_SHORT: Record<number, string> = {
+    [TEAM_IDS.UYGHUR_UNITED]: 'Uyghur Utd',
+    [TEAM_IDS.LACHIN_FC]: 'Lachin FC',
+    [TEAM_IDS.SF_BAY]: 'SF Bay',
+    [TEAM_IDS.BNYUU]: 'BNYUU',
+};
+
 // Helper to get team by ID
 export function getTeamById(id: number): TeamLogo | undefined {
     return clubTeams.find(team => team.id === id);
