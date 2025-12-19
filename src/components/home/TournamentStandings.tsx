@@ -70,21 +70,21 @@ function StandingsTable({
 }) {
     return (
         <div>
-            <table className="w-full table-fixed text-white text-xs sm:text-sm">
+            <table className="w-full text-white text-xs sm:text-sm">
                 <thead>
                     <tr className="border-b border-white/20 text-white/70 text-[10px] sm:text-xs">
-                        <th className="py-2 px-1 text-left w-6"></th>
-                        <th className="py-2 px-1 text-left">Club</th>
-                        <th className="py-2 px-1 text-center w-6">MP</th>
-                        <th className="py-2 px-1 text-center w-6">W</th>
-                        <th className="py-2 px-1 text-center w-6">D</th>
-                        <th className="py-2 px-1 text-center w-6">L</th>
-                        <th className="py-2 px-1 text-center w-6">Y</th>
-                        <th className="py-2 px-1 text-center w-6">R</th>
-                        <th className="py-2 px-1 text-center w-6">GF</th>
-                        <th className="py-2 px-1 text-center w-6">GA</th>
-                        <th className="py-2 px-1 text-center w-8">GD</th>
-                        <th className="py-2 px-1 text-center w-8 font-bold">Pts</th>
+                        <th className="py-2 px-1 text-left w-5"></th>
+                        <th className="py-2 pl-1 text-left">Club</th>
+                        <th className="py-2 px-1 text-center">MP</th>
+                        <th className="py-2 px-1 text-center">W</th>
+                        <th className="py-2 px-1 text-center">D</th>
+                        <th className="py-2 px-1 text-center">L</th>
+                        <th className="py-2 px-1 text-center">Y</th>
+                        <th className="py-2 px-1 text-center">R</th>
+                        <th className="py-2 px-1 text-center">GF</th>
+                        <th className="py-2 px-1 text-center">GA</th>
+                        <th className="py-2 px-1 text-center">GD</th>
+                        <th className="py-2 px-1 text-center font-bold">Pts</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -103,7 +103,7 @@ function StandingsTable({
                                     } hover:bg-white/10 transition-colors`}
                             >
                                 <td className="py-2 px-1 text-white/70 font-bold">{index + 1}</td>
-                                <td className="py-2 px-1">
+                                <td className="py-2 pl-1">
                                     <div className="flex items-center gap-2">
                                         {team && (
                                             <div className="w-5 h-5 md:w-6 md:h-6 rounded-full overflow-hidden bg-white/20 flex-shrink-0">
