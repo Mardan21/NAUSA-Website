@@ -73,7 +73,7 @@ function StandingsTable({
             <table className="w-full text-white text-xs sm:text-sm">
                 <thead>
                     <tr className="border-b border-white/20 text-white/70 text-[10px] sm:text-xs">
-                        <th className="py-2 px-1 text-left w-5"></th>
+                        <th className="py-2 pl-2 pr-1 text-center w-8"></th>
                         <th className="py-2 pl-1 text-left">Club</th>
                         <th className="py-2 px-1 text-center">MP</th>
                         <th className="py-2 px-1 text-center">W</th>
@@ -102,7 +102,7 @@ function StandingsTable({
                                 className={`border-b border-white/10 ${index % 2 === 0 ? "bg-white/5" : ""
                                     } hover:bg-white/10 transition-colors`}
                             >
-                                <td className="py-2 px-1 text-white/70 font-bold">{index + 1}</td>
+                                <td className="py-2 pl-2 pr-1 text-center text-white/70 font-bold">{index + 1}</td>
                                 <td className="py-2 pl-1">
                                     <div className="flex items-center gap-2">
                                         {team && (
@@ -155,7 +155,7 @@ function StatLeadersTable({
             <div className="flex border-b border-white/20">
                 <button
                     onClick={() => setStatTab("goals")}
-                    className={`px-4 py-2 text-xs sm:text-sm font-medium transition-colors focus:outline-none ${statTab === "goals"
+                    className={`px-4 py-2 text-[10px] sm:text-xs font-medium transition-colors focus:outline-none ${statTab === "goals"
                         ? "text-white border-b-2 border-nausa-lightblue"
                         : "text-white/60 hover:text-white"
                         }`}
@@ -164,7 +164,7 @@ function StatLeadersTable({
                 </button>
                 <button
                     onClick={() => setStatTab("yellow")}
-                    className={`px-4 py-2 text-xs sm:text-sm font-medium transition-colors focus:outline-none ${statTab === "yellow"
+                    className={`px-4 py-2 text-[10px] sm:text-xs font-medium transition-colors focus:outline-none ${statTab === "yellow"
                         ? "text-white border-b-2 border-yellow-400"
                         : "text-white/60 hover:text-white"
                         }`}
@@ -173,7 +173,7 @@ function StatLeadersTable({
                 </button>
                 <button
                     onClick={() => setStatTab("red")}
-                    className={`px-4 py-2 text-xs sm:text-sm font-medium transition-colors focus:outline-none ${statTab === "red"
+                    className={`px-4 py-2 text-[10px] sm:text-xs font-medium transition-colors focus:outline-none ${statTab === "red"
                         ? "text-white border-b-2 border-red-500"
                         : "text-white/60 hover:text-white"
                         }`}
@@ -201,8 +201,8 @@ function GoalsLeaderboard() {
         <div className="overflow-x-auto">
             <table className="w-full table-fixed text-white text-xs sm:text-sm">
                 <thead>
-                    <tr className="border-b border-white/20 text-white/70">
-
+                    <tr className="border-b border-white/20 text-white/70 text-[10px] sm:text-xs">
+                        <th className="py-1 px-1 text-center w-10">Rank</th>
                         <th className="py-1 px-2 text-left">Player</th>
                         <th className="py-1 px-2 text-right w-16">Goals</th>
                     </tr>
@@ -232,8 +232,8 @@ function YellowCardsLeaderboard() {
         <div className="overflow-x-auto">
             <table className="w-full table-fixed text-white text-xs sm:text-sm">
                 <thead>
-                    <tr className="border-b border-white/20 text-white/70">
-
+                    <tr className="border-b border-white/20 text-white/70 text-[10px] sm:text-xs">
+                        <th className="py-1 px-1 text-center w-10">Rank</th>
                         <th className="py-1 px-2 text-left">Player</th>
                         <th className="py-1 px-2 text-right w-16">Cards</th>
                     </tr>
@@ -273,8 +273,8 @@ function RedCardsLeaderboard() {
         <div className="overflow-x-auto">
             <table className="w-full table-fixed text-white text-xs sm:text-sm">
                 <thead>
-                    <tr className="border-b border-white/20 text-white/70">
-
+                    <tr className="border-b border-white/20 text-white/70 text-[10px] sm:text-xs">
+                        <th className="py-1 px-1 text-center w-10">Rank</th>
                         <th className="py-1 px-2 text-left">Player</th>
                         <th className="py-1 px-2 text-right w-16">Cards</th>
                     </tr>
@@ -318,9 +318,11 @@ function PlayerStatRow({
             className={`border-b border-white/10 ${isEven ? "bg-white/5" : ""
                 } hover:bg-white/10 transition-colors`}
         >
+            <td className="py-2 px-1 text-center w-10">
+                <span className="text-white/70 font-bold">{rank}</span>
+            </td>
             <td className="py-2 px-1">
                 <div className="flex items-center gap-2">
-                    <span className="w-6 text-center text-white/70 font-bold flex-shrink-0">{rank}</span>
                     {team && (
                         <div className="w-6 h-6 rounded-full overflow-hidden bg-white/20 flex-shrink-0">
                             <Image
@@ -332,7 +334,7 @@ function PlayerStatRow({
                             />
                         </div>
                     )}
-                    <div className="flex flex-col items-start ml-1">
+                    <div className="flex flex-col items-start">
                         <span className="font-bold">No. {player.jerseyNumber}</span>
                         <span className="text-white/60 text-[10px] sm:text-xs">{teamAbbrev}</span>
                     </div>
