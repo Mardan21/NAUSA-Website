@@ -10,6 +10,7 @@ import {
     getTeamById,
     getGoalDifference,
     getPoints,
+    getTeamCardTotals,
     TEAM_ABBREVIATIONS,
     assignRanks,
     type PlayerStat,
@@ -67,7 +68,7 @@ function StandingsTable({
     standings: ReturnType<typeof getSortedStandings>;
 }) {
     return (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto dark-scrollbar">
             <table className="w-full text-white text-xs sm:text-sm">
                 <thead>
                     <tr className="border-b border-white/20 text-white/70">
@@ -77,6 +78,8 @@ function StandingsTable({
                         <th className="py-2 px-2 text-center w-8">W</th>
                         <th className="py-2 px-2 text-center w-8">D</th>
                         <th className="py-2 px-2 text-center w-8">L</th>
+                        <th className="py-2 px-2 text-center w-8">Y</th>
+                        <th className="py-2 px-2 text-center w-8">R</th>
                         <th className="py-2 px-2 text-center w-8 hidden sm:table-cell">GF</th>
                         <th className="py-2 px-2 text-center w-8 hidden sm:table-cell">GA</th>
                         <th className="py-2 px-2 text-center w-10">GD</th>
@@ -89,6 +92,7 @@ function StandingsTable({
                         const abbrev = TEAM_ABBREVIATIONS[standing.teamId];
                         const gd = getGoalDifference(standing);
                         const pts = getPoints(standing);
+                        const cardTotals = getTeamCardTotals(standing.teamId);
 
                         return (
                             <tr
@@ -117,6 +121,8 @@ function StandingsTable({
                                 <td className="py-2 px-2 text-center">{standing.wins}</td>
                                 <td className="py-2 px-2 text-center">{standing.draws}</td>
                                 <td className="py-2 px-2 text-center">{standing.losses}</td>
+                                <td className="py-2 px-2 text-center text-yellow-400">{cardTotals.yellowCards}</td>
+                                <td className="py-2 px-2 text-center text-red-500">{cardTotals.redCards}</td>
                                 <td className="py-2 px-2 text-center hidden sm:table-cell">{standing.goalsFor}</td>
                                 <td className="py-2 px-2 text-center hidden sm:table-cell">{standing.goalsAgainst}</td>
                                 <td className="py-2 px-2 text-center">
