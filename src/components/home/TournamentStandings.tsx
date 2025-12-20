@@ -20,7 +20,6 @@ import {
     areFinalsComplete,
     type PlayerStat,
     type FinalMatch,
-    type MatchEvent,
 } from "@/data/tournament2025";
 
 type MainTab = "finals" | "standings" | "stats";
@@ -394,7 +393,7 @@ function FinalsView() {
             {/* Podium (only shows when finals are complete) */}
             {finalsComplete && (
                 <div className="relative z-10">
-                    <Podium results={podiumResults} isComplete={finalsComplete} />
+                    <Podium results={podiumResults} />
                 </div>
             )}
 
@@ -459,9 +458,8 @@ function Confetti() {
 }
 
 // Podium Component (Compact version - no tall stands)
-function Podium({ results, isComplete }: {
+function Podium({ results }: {
     results: { first: number | null; second: number | null; third: number | null };
-    isComplete: boolean;
 }) {
     const firstTeam = results.first ? getTeamById(results.first) : null;
     const secondTeam = results.second ? getTeamById(results.second) : null;
