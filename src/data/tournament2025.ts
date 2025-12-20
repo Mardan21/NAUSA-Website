@@ -204,3 +204,80 @@ export function assignRanks<T>(items: T[], getValue: (item: T) => number): { ite
 
     return result;
 }
+
+// Final Match Types
+export interface MatchEvent {
+    jerseyNumber: number;
+    teamId: number;
+}
+
+export interface FinalMatch {
+    matchId: "championship" | "third-place";
+    title: string;
+    homeTeam: number;
+    awayTeam: number;
+    homeScore: number | null;  // null = not played yet
+    awayScore: number | null;
+    goalScorers: MatchEvent[];
+    yellowCards: MatchEvent[];
+    redCards: MatchEvent[];
+}
+
+// Finals Day - December 20th, 2024
+export const FINALS_DATE = "December 20th, 2024";
+
+// Final matches data
+export const finalMatches: FinalMatch[] = [
+    {
+        matchId: "championship",
+        title: "Championship",
+        homeTeam: TEAM_IDS.UYGHUR_UNITED,  // 1st place
+        awayTeam: TEAM_IDS.SF_BAY,          // 2nd place
+        homeScore: null,
+        awayScore: null,
+        goalScorers: [],
+        yellowCards: [],
+        redCards: [],
+    },
+    {
+        matchId: "third-place",
+        title: "Third Place",
+        homeTeam: TEAM_IDS.LACHIN_FC,       // 3rd place
+        awayTeam: TEAM_IDS.BNYUU,           // 4th place
+        homeScore: null,
+        awayScore: null,
+        goalScorers: [],
+        yellowCards: [],
+        redCards: [],
+    },
+];
+
+// Get a specific final match
+export function getFinalMatch(matchId: "championship" | "third-place"): FinalMatch | undefined {
+    return finalMatches.find(m => m.matchId === matchId);
+}
+
+// Check if finals have been played
+export function areFinalsComplete(): boolean {
+    return finalMatches.every(m => m.homeScore !== null && m.awayScore !== null);
+}
+
+// Get podium results (only valid after finals are complete)
+export function getPodiumResults(): { first: number | null; second: number | null; third: number | null } {
+    const championship = getFinalMatch("championship");
+    const thirdPlace = getFinalMatch("third-place");
+
+    if (!championship || championship.homeScore === null || championship.awayScore === null) {
+        return { first: null, second: null, third: null };
+    }
+
+    const first = championship.homeScore > championship.awayScore ? championship.homeTeam : championship.awayTeam;
+    const second = championship.homeScore > championship.awayScore ? championship.awayTeam : championship.homeTeam;
+
+    let third: number | null = null;
+    if (thirdPlace && thirdPlace.homeScore !== null && thirdPlace.awayScore !== null) {
+        third = thirdPlace.homeScore > thirdPlace.awayScore ? thirdPlace.homeTeam : thirdPlace.awayTeam;
+    }
+
+    return { first, second, third };
+}
