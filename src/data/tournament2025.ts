@@ -149,30 +149,100 @@ export const playerStats: PlayerStat[] = [
     { jerseyNumber: 88, teamId: TEAM_IDS.SF_BAY, goals: 0, yellowCards: 1, redCards: 0 },
 ];
 
+// Combine group stage stats with finals day stats
+export function getAllPlayerStats(): PlayerStat[] {
+    // Create a map of player stats keyed by teamId-jerseyNumber
+    const statsMap = new Map<string, PlayerStat>();
+
+    // Add group stage stats
+    for (const player of playerStats) {
+        const key = `${player.teamId}-${player.jerseyNumber}`;
+        statsMap.set(key, { ...player });
+    }
+
+    // Add finals day stats from final matches
+    for (const match of finalMatches) {
+        // Add goals (excluding own goals - they don't count as goals for the player)
+        for (const goal of match.goalScorers) {
+            if (goal.isOwnGoal) continue; // Own goals don't count for the scorer
+
+            const key = `${goal.teamId}-${goal.jerseyNumber}`;
+            const existing = statsMap.get(key);
+            if (existing) {
+                existing.goals += 1;
+            } else {
+                statsMap.set(key, {
+                    jerseyNumber: goal.jerseyNumber,
+                    teamId: goal.teamId,
+                    goals: 1,
+                    yellowCards: 0,
+                    redCards: 0,
+                });
+            }
+        }
+
+        // Add yellow cards
+        for (const card of match.yellowCards) {
+            const key = `${card.teamId}-${card.jerseyNumber}`;
+            const existing = statsMap.get(key);
+            if (existing) {
+                existing.yellowCards += 1;
+            } else {
+                statsMap.set(key, {
+                    jerseyNumber: card.jerseyNumber,
+                    teamId: card.teamId,
+                    goals: 0,
+                    yellowCards: 1,
+                    redCards: 0,
+                });
+            }
+        }
+
+        // Add red cards
+        for (const card of match.redCards) {
+            const key = `${card.teamId}-${card.jerseyNumber}`;
+            const existing = statsMap.get(key);
+            if (existing) {
+                existing.redCards += 1;
+            } else {
+                statsMap.set(key, {
+                    jerseyNumber: card.jerseyNumber,
+                    teamId: card.teamId,
+                    goals: 0,
+                    yellowCards: 0,
+                    redCards: 1,
+                });
+            }
+        }
+    }
+
+    return Array.from(statsMap.values());
+}
+
 // Get top scorers sorted by goals (descending)
 export function getTopScorers(): PlayerStat[] {
-    return [...playerStats]
+    return getAllPlayerStats()
         .filter(p => p.goals > 0)
         .sort((a, b) => b.goals - a.goals);
 }
 
 // Get players with yellow cards sorted by count (descending)
 export function getYellowCardLeaders(): PlayerStat[] {
-    return [...playerStats]
+    return getAllPlayerStats()
         .filter(p => p.yellowCards > 0)
         .sort((a, b) => b.yellowCards - a.yellowCards);
 }
 
 // Get players with red cards sorted by count (descending)
 export function getRedCardLeaders(): PlayerStat[] {
-    return [...playerStats]
+    return getAllPlayerStats()
         .filter(p => p.redCards > 0)
         .sort((a, b) => b.redCards - a.redCards);
 }
 
-// Get total yellow and red cards for a team (aggregated from player stats)
+// Get total yellow and red cards for a team (aggregated from all stats including finals)
 export function getTeamCardTotals(teamId: number): { yellowCards: number; redCards: number } {
-    const teamPlayers = playerStats.filter(p => p.teamId === teamId);
+    const teamPlayers = getAllPlayerStats().filter(p => p.teamId === teamId);
     return {
         yellowCards: teamPlayers.reduce((sum, p) => sum + p.yellowCards, 0),
         redCards: teamPlayers.reduce((sum, p) => sum + p.redCards, 0),
@@ -209,6 +279,7 @@ export function assignRanks<T>(items: T[], getValue: (item: T) => number): { ite
 export interface MatchEvent {
     jerseyNumber: number;
     teamId: number;
+    isOwnGoal?: boolean;  // true if own goal (scored against their own team)
 }
 
 export interface FinalMatch {
@@ -218,6 +289,8 @@ export interface FinalMatch {
     awayTeam: number;
     homeScore: number | null;  // null = not played yet
     awayScore: number | null;
+    penaltyHomeScore?: number | null;  // penalty shootout score
+    penaltyAwayScore?: number | null;  // penalty shootout score
     goalScorers: MatchEvent[];
     yellowCards: MatchEvent[];
     redCards: MatchEvent[];
@@ -231,22 +304,39 @@ export const finalMatches: FinalMatch[] = [
     {
         matchId: "championship",
         title: "Championship",
-        homeTeam: TEAM_IDS.UYGHUR_UNITED,  // 1st place
-        awayTeam: TEAM_IDS.SF_BAY,          // 2nd place
-        homeScore: null,
-        awayScore: null,
-        goalScorers: [],
-        yellowCards: [],
-        redCards: [],
+        homeTeam: TEAM_IDS.UYGHUR_UNITED,  // 1st place from group stage
+        awayTeam: TEAM_IDS.SF_BAY,          // 2nd place from group stage
+        homeScore: 2,
+        awayScore: 2,
+        penaltyHomeScore: 4,  // Uyghur Utd wins on penalties
+        penaltyAwayScore: 2,
+        goalScorers: [
+            // Uyghur Utd goals
+            { jerseyNumber: 5, teamId: TEAM_IDS.UYGHUR_UNITED },
+            { jerseyNumber: 14, teamId: TEAM_IDS.SF_BAY, isOwnGoal: true },  // SF Bay own goal
+            // SF Bay goals
+            { jerseyNumber: 12, teamId: TEAM_IDS.SF_BAY },
+            { jerseyNumber: 1, teamId: TEAM_IDS.SF_BAY },
+        ],
+        yellowCards: [
+            { jerseyNumber: 21, teamId: TEAM_IDS.UYGHUR_UNITED },
+            { jerseyNumber: 10, teamId: TEAM_IDS.UYGHUR_UNITED },  // First yellow
+            { jerseyNumber: 12, teamId: TEAM_IDS.SF_BAY },
+        ],
+        redCards: [
+            // { jerseyNumber: 10, teamId: TEAM_IDS.UYGHUR_UNITED },  // Second yellow = red
+        ],
     },
     {
         matchId: "third-place",
         title: "Third Place",
-        homeTeam: TEAM_IDS.LACHIN_FC,       // 3rd place
-        awayTeam: TEAM_IDS.BNYUU,           // 4th place
-        homeScore: null,
-        awayScore: null,
-        goalScorers: [],
+        homeTeam: TEAM_IDS.LACHIN_FC,       // 3rd place from group stage
+        awayTeam: TEAM_IDS.BNYUU,           // 4th place from group stage
+        homeScore: 0,
+        awayScore: 1,
+        goalScorers: [
+            { jerseyNumber: 9, teamId: TEAM_IDS.BNYUU },
+        ],
         yellowCards: [],
         redCards: [],
     },
@@ -271,12 +361,42 @@ export function getPodiumResults(): { first: number | null; second: number | nul
         return { first: null, second: null, third: null };
     }
 
-    const first = championship.homeScore > championship.awayScore ? championship.homeTeam : championship.awayTeam;
-    const second = championship.homeScore > championship.awayScore ? championship.awayTeam : championship.homeTeam;
+    // Determine championship winner (handle penalties if tied)
+    let first: number;
+    let second: number;
 
+    if (championship.homeScore > championship.awayScore) {
+        first = championship.homeTeam;
+        second = championship.awayTeam;
+    } else if (championship.homeScore < championship.awayScore) {
+        first = championship.awayTeam;
+        second = championship.homeTeam;
+    } else {
+        // Tied - check penalty scores
+        const penHome = championship.penaltyHomeScore ?? 0;
+        const penAway = championship.penaltyAwayScore ?? 0;
+        if (penHome > penAway) {
+            first = championship.homeTeam;
+            second = championship.awayTeam;
+        } else {
+            first = championship.awayTeam;
+            second = championship.homeTeam;
+        }
+    }
+
+    // Determine third place winner
     let third: number | null = null;
     if (thirdPlace && thirdPlace.homeScore !== null && thirdPlace.awayScore !== null) {
-        third = thirdPlace.homeScore > thirdPlace.awayScore ? thirdPlace.homeTeam : thirdPlace.awayTeam;
+        if (thirdPlace.homeScore > thirdPlace.awayScore) {
+            third = thirdPlace.homeTeam;
+        } else if (thirdPlace.homeScore < thirdPlace.awayScore) {
+            third = thirdPlace.awayTeam;
+        } else {
+            // Tied - check penalty scores
+            const penHome = thirdPlace.penaltyHomeScore ?? 0;
+            const penAway = thirdPlace.penaltyAwayScore ?? 0;
+            third = penHome > penAway ? thirdPlace.homeTeam : thirdPlace.awayTeam;
+        }
     }
 
     return { first, second, third };

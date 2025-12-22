@@ -385,7 +385,7 @@ function FinalsView() {
             {/* Finals Header */}
             <div className="text-center relative z-10">
                 <h3 className="text-white font-bold text-sm sm:text-base">
-                    🏆 Finals Day
+                    🏆 Finals
                 </h3>
                 <p className="text-white/60 text-[10px] sm:text-xs">{FINALS_DATE}</p>
             </div>
@@ -529,10 +529,17 @@ function MatchCard({ match }: { match: FinalMatch }) {
     const homeTeam = getTeamById(match.homeTeam);
     const awayTeam = getTeamById(match.awayTeam);
     const isPlayed = match.homeScore !== null && match.awayScore !== null;
+    const hasPenalties = match.penaltyHomeScore != null && match.penaltyAwayScore != null;
 
-    // Get goal scorers for each team
-    const homeGoals = match.goalScorers.filter(g => g.teamId === match.homeTeam);
-    const awayGoals = match.goalScorers.filter(g => g.teamId === match.awayTeam);
+    // Get goals FOR each team (own goals count for the opposing team)
+    const homeGoals = match.goalScorers.filter(g =>
+        (g.teamId === match.homeTeam && !g.isOwnGoal) ||
+        (g.teamId === match.awayTeam && g.isOwnGoal)
+    );
+    const awayGoals = match.goalScorers.filter(g =>
+        (g.teamId === match.awayTeam && !g.isOwnGoal) ||
+        (g.teamId === match.homeTeam && g.isOwnGoal)
+    );
     const homeYellows = match.yellowCards.filter(c => c.teamId === match.homeTeam);
     const awayYellows = match.yellowCards.filter(c => c.teamId === match.awayTeam);
     const homeReds = match.redCards.filter(c => c.teamId === match.homeTeam);
@@ -572,12 +579,28 @@ function MatchCard({ match }: { match: FinalMatch }) {
                 <div className="flex flex-col items-center px-3">
                     {isPlayed ? (
                         <>
-                            <div className="flex items-center gap-2">
-                                <span className="text-white font-extrabold text-4xl sm:text-5xl">{match.homeScore}</span>
-                                <span className="text-white/40 text-xl">-</span>
-                                <span className="text-white font-extrabold text-4xl sm:text-5xl">{match.awayScore}</span>
+                            <div className="flex items-center gap-1">
+                                <span className="text-white font-extrabold text-4xl sm:text-5xl">
+                                    {match.homeScore}
+                                </span>
+                                {hasPenalties && (
+                                    <span className="text-white/60 font-bold text-lg sm:text-xl">
+                                        ({match.penaltyHomeScore})
+                                    </span>
+                                )}
+                                <span className="text-white/40 text-xl mx-1">-</span>
+                                {hasPenalties && (
+                                    <span className="text-white/60 font-bold text-lg sm:text-xl">
+                                        ({match.penaltyAwayScore})
+                                    </span>
+                                )}
+                                <span className="text-white font-extrabold text-4xl sm:text-5xl">
+                                    {match.awayScore}
+                                </span>
                             </div>
-                            <span className="text-green-400 text-[10px] font-medium uppercase">Full Time</span>
+                            <span className="text-green-400 text-[10px] font-medium uppercase">
+                                {hasPenalties ? "After Penalties" : "Full Time"}
+                            </span>
                         </>
                     ) : (
                         <>
@@ -616,6 +639,7 @@ function MatchCard({ match }: { match: FinalMatch }) {
                                 <div key={`goal-${i}`} className="flex items-center gap-1">
                                     <span>⚽</span>
                                     <span>No. {g.jerseyNumber}</span>
+                                    {g.isOwnGoal && <span className="text-red-400">(OG)</span>}
                                 </div>
                             ))}
                             {homeYellows.map((c, i) => (
@@ -636,6 +660,7 @@ function MatchCard({ match }: { match: FinalMatch }) {
                         <div className="flex-1 space-y-1 text-right">
                             {awayGoals.map((g, i) => (
                                 <div key={`goal-${i}`} className="flex items-center gap-1 justify-end">
+                                    {g.isOwnGoal && <span className="text-red-400">(OG)</span>}
                                     <span>No. {g.jerseyNumber}</span>
                                     <span>⚽</span>
                                 </div>
